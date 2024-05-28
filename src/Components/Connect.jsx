@@ -1,6 +1,6 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-const Connect = ({ setAccountDetails }) => {
+const Connect = () => {
   return (
     <ConnectButton.Custom>
       {({
@@ -19,21 +19,6 @@ const Connect = ({ setAccountDetails }) => {
           chain &&
           (!authenticationStatus ||
             authenticationStatus === 'authenticated');
-
-        if (connected && account) {
-          // Set account details when connected
-          setAccountDetails({
-            displayName: account.displayName,
-            displayBalance: account.displayBalance,
-          });
-        } else {
-          // Clear account details when not connected
-          setAccountDetails({
-            displayName: '',
-            displayBalance: '',
-          });
-        }
-
         return (
           <div
             {...(!ready && {

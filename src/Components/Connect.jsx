@@ -76,8 +76,8 @@ const Connect = () => {
                       <div
                         style={{
                           background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
+                          width: 20,
+                          height: 20,
                           borderRadius: 999,
                           overflow: 'hidden',
                           marginRight: 4,
@@ -87,12 +87,14 @@ const Connect = () => {
                           <img className='text-white'
                             alt={chain.name ?? 'Chain icon'}
                             src={chain.iconUrl}
-                            style={{ width: 12, height: 12 }}
+                            style={{ width: 20, height: 20 }}
                           />
                         )}
                       </div>
                     )}
+                    <div className='text-xl text-white'>
                     {chain.name}
+                    </div>
                   </button>
                   <button onClick={openAccountModal} type="button" className='text-white  border-2 rounded-2xl px-4 py-4 text-xl font-bold bg-gradient-to-tr from-red-200 via-red-400 to-blue-500 '>
                     {account.displayName}

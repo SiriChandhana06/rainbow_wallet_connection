@@ -1,6 +1,23 @@
+import React, { useEffect, useRef } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from './AccountContext';
 
 const Connect = () => {
+  const { setAccountInfo } = useAccount();
+  const accountRef = useRef(null);
+
+  useEffect(() => {
+    if (accountRef.current) {
+      const { account, connected } = accountRef.current;
+      if (connected && account) {
+        setAccountInfo({
+          displayName: account.displayName,
+          displayBalance: account.displayBalance || '',
+        });
+      }
+    }
+  }, [accountRef.current]);
+
   return (
     <ConnectButton.Custom>
       {({
@@ -19,11 +36,14 @@ const Connect = () => {
           chain &&
           (!authenticationStatus ||
             authenticationStatus === 'authenticated');
+
+        accountRef.current = { account, connected };
+
         return (
           <div
             {...(!ready && {
               'aria-hidden': true,
-              'style': {
+              style: {
                 opacity: 0,
                 pointerEvents: 'none',
                 userSelect: 'none',
@@ -74,7 +94,7 @@ const Connect = () => {
                     )}
                     {chain.name}
                   </button>
-                  <button onClick={openAccountModal} type="button" className='text-white '>
+                  <button onClick={openAccountModal} type="button" className='text-white  border-2 rounded-2xl px-4 py-4 text-xl font-bold bg-gradient-to-tr from-red-200 via-red-400 to-blue-500 '>
                     {account.displayName}
                     {account.displayBalance
                       ? ` (${account.displayBalance})`

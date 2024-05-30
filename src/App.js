@@ -1,11 +1,13 @@
 import React from 'react';
 import Home from './Components/Home';
+import { AccountProvider } from './Components/AccountContext';
 
 function App() {
   return (
-    <div className="App">
+    <AccountProvider>
       <Home/>
-    </div>
+    </AccountProvider>
+    
   );
 }
 

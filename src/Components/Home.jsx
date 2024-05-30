@@ -1,8 +1,10 @@
 import React from 'react';
 import img from '../Assets/Digital wallet and online banking (1).png';
 import Connect from './Connect';
+import { useAccount } from './AccountContext';
 
 const Home = () => {
+    const { accountInfo } = useAccount();
   return (
     <div className="bg-gray-900 h-screen">
         <div>
@@ -15,10 +17,10 @@ const Home = () => {
             <Connect/>
         </div>
         <div className='pt-10'> 
-            <h1 className='text-white text-4xl pl-20 pt-10'>Address:</h1>
+            <h1 className='text-white text-4xl pl-20 pt-10'>Address: {accountInfo.displayName}</h1>
         </div>
         <div className='pt-10'>
-            <h1 className='text-white text-4xl pl-20 pt-10'>Balance:</h1>
+            <h1 className='text-white text-4xl pl-20 pt-10'>Balance: {accountInfo.displayBalance}</h1>
         </div>
         </div>
         <div>
@@ -26,6 +28,7 @@ const Home = () => {
         </div>
         </div>
     </div>
+    
   )
 }
 
